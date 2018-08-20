@@ -1,0 +1,74 @@
+swagger: "2.0"
+info:
+  description: This is the swagger file that goes with our server code
+  version: "1.0.0"
+  title: Swagger REST Article
+consumes:
+  - "application/json"
+produces:
+  - "application/json"
+
+paths:
+  /items:
+    get:
+      operationId: "api.items.get"
+      parameters:
+        - name: message
+          description: Some message.
+          in: query
+          type: string
+          required: true
+
+        - name: name
+          in: query
+          type: string
+          required: false
+
+      responses:
+        200:
+          description: "Successful read people list operation"
+
+    post:
+      operationId: "api.items.post"
+      parameters:
+        - name: message
+          in: body
+          schema:
+            $ref: '#/definitions/Message'
+      responses:
+        200:
+          description: "Successful read people list operation two"
+
+
+definitions:
+  Message:
+    type: object
+    required:
+      - name
+      - message
+      - data
+    properties:
+      name:
+        type: string
+        description: Pet's name
+        example: "Susie"
+        minLength: 1
+        maxLength: 100
+      message:
+        type: string
+        description: Pet's name
+        example: "Susie"
+        minLength: 1
+        maxLength: 100
+      data:
+        type: array
+        description: array
+        example: [{"f_name": "three"}]
+        items:
+          type: object
+          required:
+            - f_name
+          properties:
+            f_name:
+              type: string
+              description: Pet's name
