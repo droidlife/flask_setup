@@ -9,9 +9,9 @@ produces:
   - "application/json"
 
 paths:
-  /items:
+  /v1/items:
     get:
-      operationId: "api.items.get"
+      operationId: "api.v1.items.get"
       parameters:
         - name: message
           description: Some message.
@@ -29,7 +29,7 @@ paths:
           description: "Successful read people list operation"
 
     post:
-      operationId: "api.items.post"
+      operationId: "api.v1.items.post"
       parameters:
         - name: message
           in: body
