@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: red
+  annotations:
+    getambassador.io/config: |
+      ---
+      apiVersion: ambassador/v0
+      kind:  Mapping
+      name:  r_mapping
+      prefix: /rr/
+      service: red
+spec:
+  selector:
+    app: red
+  ports:
+    - name: http
+      port: 80
+      targetPort: 5000
+      protocol: TCP
