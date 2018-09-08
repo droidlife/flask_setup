@@ -4,7 +4,6 @@ from flask import request
 def auth_required(*users):
     def authenticator(func):
         def wrap(*args, **kwargs):
-            print(users)
             request.user = users[0]
             return func(*args, **kwargs)
         wrap.__name__ = func.__name__

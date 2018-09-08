@@ -2,6 +2,7 @@ from app import create_app
 from api.middleware import log_request
 from flask import request
 
+
 app = create_app()
 flask_app = app.app
 

@@ -44,21 +44,23 @@ definitions:
   Order:
     type: object
     required:
-      - name
-      - order
-      - data
+      - customer_name
+      - customer_email
+      - comment_data
     properties:
-      name:
+      customer_name:
         type: string
-        description: Order Name
-        example: "Car"
+        description: customer name
+        example: "ankur"
         minLength: 1
         maxLength: 100
-      order:
-        type: integer
-        description: order id
-        example: 1
-      data:
+      customer_email:
+        type: string
+        description: customer_email
+        example: "a@abc.com"
+        minLength: 1
+        maxLength: 100
+      comment_data:
         type: array
         description: array
         example: [{"foo": "bar"}]
@@ -67,6 +69,6 @@ definitions:
           required:
             - foo
           properties:
-            f_name:
+            foo:
               type: string
               description: foo
