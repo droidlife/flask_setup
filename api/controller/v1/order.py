@@ -1,8 +1,8 @@
 from api.middleware import auth_required
 from flask import request
 from api.models import Order, Comment
-from api.serializer.dto.order_dto import OrderDto
-from api.serializer.dao.order_dao import OrderDao
+from api.serializer.dto import OrderDto
+from api.serializer.dao import OrderDao
 
 
 def get(customer_name, customer_email=None):
