@@ -1,6 +1,6 @@
 from api.middleware import auth_required
 from flask import request
-from api.models import Order
+from api.models import Order, Comment
 from api.serializer.dto.order_dto import OrderDto
 from api.serializer.dao.order_dao import OrderDao
 
@@ -20,6 +20,12 @@ def post(order_data):
     if result.errors:
         return result.errors, 400
 
-    order = Order.create(**result.data)
-    order_data['order_id'] = order.id
+    order = Order.create(customer_name=result.data['customer_name'], customer_email=result.data['customer_email'])
+
+    comment_list = []
+    for comment in result.data['comments']:
+        comment_list.append(Comment(text=comment, order_id=order.id))
+
+    Comment.bulk_create(comment_list)
+
     return order_data, 200
