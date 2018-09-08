@@ -35,48 +35,11 @@ paths:
         - name: order_data
           in: body
           schema:
-            $ref: '#/definitions/Order'
+            $ref: '#/definitions/payload'
       responses:
         200:
           description: "Successfully added order"
 
 definitions:
-  Order:
+  payload:
     type: object
-    required:
-      - customer_name
-      - customer_email
-      - comment_data
-      - data
-    properties:
-      customer_name:
-        type: string
-        description: customer name
-        example: "ankur"
-        minLength: 1
-        maxLength: 100
-      customer_email:
-        type: string
-        description: customer_email
-        example: "a@abc.com"
-        minLength: 1
-        maxLength: 100
-      data:
-        type: object
-        required:
-          - foo
-        properties:
-          foo:
-            type: string
-      comment_data:
-        type: array
-        description: array
-        example: [{"foo": "bar"}]
-        items:
-          type: object
-          required:
-            - foo
-          properties:
-            foo:
-              type: string
-              description: foo
