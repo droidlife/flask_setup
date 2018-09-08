@@ -1,13 +1,14 @@
 from app import create_app
-from app.logger import log_data
+from api.middleware import log_request
 from flask import request
 
 app = create_app()
+flask_app = app.app
 
 
-@app.app.before_request
+@flask_app.before_request
 def before_request():
-    log_data(request)
+    log_request(request)
 
 
 if __name__ == '__main__':

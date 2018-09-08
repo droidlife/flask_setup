@@ -1,33 +1,28 @@
-import os
-
-
 class Config(object):
-    """Parent configuration class."""
     DEBUG = False
     CSRF_ENABLED = True
 
 
 class DevelopmentConfig(Config):
-    """Configurations for Development."""
     DEBUG = True
     ENV = 'development'
 
 
 class TestingConfig(Config):
-    """Configurations for Testing, with a separate test database."""
     TESTING = True
     DEBUG = True
+    ENV = 'testing'
 
 
 class StagingConfig(Config):
-    """Configurations for Staging."""
     DEBUG = True
+    ENV = 'staging'
 
 
 class ProductionConfig(Config):
-    """Configurations for Production."""
     DEBUG = False
     TESTING = False
+    ENV = 'production'
 
 
 app_config = {
