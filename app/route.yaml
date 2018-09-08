@@ -47,6 +47,7 @@ definitions:
       - customer_name
       - customer_email
       - comment_data
+      - data
     properties:
       customer_name:
         type: string
@@ -60,6 +61,13 @@ definitions:
         example: "a@abc.com"
         minLength: 1
         maxLength: 100
+      data:
+        type: object
+        required:
+          - foo
+        properties:
+          foo:
+            type: string
       comment_data:
         type: array
         description: array

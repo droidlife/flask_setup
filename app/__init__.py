@@ -1,7 +1,7 @@
 import connexion
 from app.config import app_config
 from app.constant import SERVER, DB_CONNECTION_URL
-from api.models import db
+from api.models import db, ma
 from flask_migrate import Migrate
 
 
@@ -18,6 +18,7 @@ def create_app():
         app.debug = True
 
     db.init_app(app.app)
+    ma.init_app(app.app)
     Migrate(app.app, db, compare_type=True)
 
     return app
