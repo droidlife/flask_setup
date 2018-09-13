@@ -26,6 +26,7 @@ class MyTestClass(unittest.TestCase):
         pass
 
     def test_equal_numbers(self):
+        print(client.get('/v1/order', query_string={'customer_email': "a"}))
         self.assertEqual(2, 2)
 
 

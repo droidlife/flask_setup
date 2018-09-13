@@ -2,11 +2,17 @@ from api.middleware import auth_required
 from flask import request
 from api.models import Order, Comment
 from api.serializer.dto import OrderDto
-from api.serializer.dao import OrderDao
+from api.serializer.dao import OrderDao, GetOrderDao
 
 
-def get(customer_name, customer_email=None):
-    order_list = Order.query.filter_by(customer_name=customer_name).all()
+def get():
+    data = request.args.to_dict()
+    result = GetOrderDao().load(data)
+
+    if result.errors:
+        return result.errors, 400
+
+    order_list = Order.query.filter_by(customer_name=result.data['customer_name']).all()
     payload = OrderDto(many=True).dump(order_list).data
     result = {
         'order_list': payload
@@ -15,7 +21,8 @@ def get(customer_name, customer_email=None):
 
 
 @auth_required('admin')
-def post(order_data):
+def post():
+    order_data = request.json
     result = OrderDao().load(order_data)
     if result.errors:
         return result.errors, 400

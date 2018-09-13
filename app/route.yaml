@@ -12,34 +12,12 @@ paths:
   /v1/order:
     get:
       operationId: "api.controller.v1.order.get"
-      parameters:
-        - name: customer_name
-          description: customer name who is placing the order
-          in: query
-          type: string
-          required: true
-
-        - name: customer_email
-          description: customer email who is placing the order
-          in: query
-          type: string
-          required: false
-
       responses:
         200:
           description: "Customer order details fetched"
 
     post:
       operationId: "api.controller.v1.order.post"
-      parameters:
-        - name: order_data
-          in: body
-          schema:
-            $ref: '#/definitions/payload'
       responses:
         200:
           description: "Successfully added order"
-
-definitions:
-  payload:
-    type: object
